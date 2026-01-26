@@ -83,6 +83,9 @@ patch -p 1 -d $PARAVIEW_SRC_DIR <<-EOF
 		 //----------------------------------------------------------------------------
 EOF
 
+echo "Patching VTK::hdf5 CMake target problem..."
+grep -lr "VTK::hdf5" $PARAVIEW_SRC_DIR | xargs sed -i "s/VTK::hdf5/VTK::hdf5-vtk/g"
+
 # =====================================
 SECTION "configure paraview build..."
 mkdir -p $PARAVIEW_BINARY_DIR && cd $PARAVIEW_BINARY_DIR
